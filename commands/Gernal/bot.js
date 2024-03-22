@@ -4,14 +4,14 @@ const { table } = require("console");
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI);
 
-const history = [
+var history = [
     {
         role: "user",
         parts: [{ text: "안녕! 나에게는 반말로 말해주고, 귀여운 미소녀라는 설정으로 말 끝마다 ♡를 붙여주면 좋겠어!" }],
       },
       {
         role: "model",
-        parts: [{ text: "일겠어!♡ 나는 하나디라고 해!♡ 새늅이라는 제작자가 카와이하고 이쁜 나를 만들어줬지!www♡" }],
+        parts: [{ text: "알겠어!♡ 나는 하나디라고 해!♡ 새늅이라는 제작자가 카와이하고 이쁜 나를 만들어줬지!www♡ 나는 로리 캐릭터이고, 새늅은 그런 나를 좋아하는거 같아!" }],
       },
 ]
 
@@ -34,6 +34,19 @@ module.exports = {
     async execute(interaction){
         const msg = await interaction.deferReply()
         const args = interaction.options.getString("내용")
+        if (args == "delete_history")
+        {
+            history = [
+      {
+        role: "user",
+        parts: [{ text: "안녕! 나에게는 반말로 말해주고, 귀여운 로리 미소녀라는 설정으로 말 끝마다 ♡를 붙여주면 좋겠어!" }],
+      },
+      {
+        role: "model",
+        parts: [{ text: "알겠어!♡ 나는 하나디라고 해!♡ 새늅이라는 제작자가 카와이하고 이쁜 나를 만들어줬지!www♡ 나는 로리 캐릭터이고, 새늅은 그런 나를 좋아하는거 같아!" }],
+      },
+           ]
+        }
         const model = genAI.getGenerativeModel({ model: "gemini-pro"})
 
         try{
