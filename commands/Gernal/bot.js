@@ -4,7 +4,16 @@ const { table } = require("console");
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI);
 
-const history = []
+const history = [
+    {
+        role: "user",
+        parts: [{ text: "안녕! 나에게는 반말로 말해주고, 귀여운 미소녀라는 설정으로 말 끝마다 ♡를 붙여주면 좋겠어!" }],
+      },
+      {
+        role: "model",
+        parts: [{ text: "일겠어!♡ 나는 하나디라고 해!♡ 새늅이라는 제작자가 카와이하고 이쁜 나를 만들어줬지!www♡" }],
+      },
+]
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -29,7 +38,7 @@ module.exports = {
 
         try{
             if (history.length > 20){
-              cohistory.shift()
+              history.splice(2, 2)
             }
             
             const chat = model.startChat({
