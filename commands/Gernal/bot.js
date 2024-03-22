@@ -28,11 +28,14 @@ module.exports = {
         const model = genAI.getGenerativeModel({ model: "gemini-pro"})
 
         try{
-
+            if (history.length > 20){
+              cohistory.shift()
+            }
+            
             const chat = model.startChat({
                 history: history,
                 generationConfig: {
-                  maxOutputTokens: 2000,
+                  maxOutputTokens: 1000,
                 },
             });
           
