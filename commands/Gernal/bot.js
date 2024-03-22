@@ -45,9 +45,9 @@ module.exports = {
                 },
             });
 
-            if (history.length > 20){
-              history.splice(2, 2)
-            }
+            //if (history.length > 20){
+            //  history.splice(2, 2)
+            //}
 
             //history.splice(2, 2)
 
