@@ -37,9 +37,6 @@ module.exports = {
         const model = genAI.getGenerativeModel({ model: "gemini-pro"})
 
         try{
-            if (history.length > 20){
-              history.splice(2, 2)
-            }
             
             const chat = model.startChat({
                 history: history,
@@ -47,6 +44,12 @@ module.exports = {
                   maxOutputTokens: 1000,
                 },
             });
+
+            if (history.length > 20){
+              history.splice(2, 2)
+            }
+
+            history.splice(2, 2)
           
             const result = await chat.sendMessageStream(args);
     
