@@ -53,7 +53,7 @@ module.exports = {
 
             console.log(history)
 
-            history.foreach((element) => console.log(element))
+            history.forEach((element) => console.log(element))
           
             const result = await chat.sendMessageStream(args);
 
