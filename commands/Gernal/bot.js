@@ -49,7 +49,7 @@ module.exports = {
               history.splice(2, 2)
             }
 
-            history.splice(2, 2)
+            //history.splice(2, 2)
 
             console.log(history)
           
