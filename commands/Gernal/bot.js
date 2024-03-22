@@ -76,6 +76,7 @@ module.exports = {
         }catch(err){
             console.log(err)
             interaction.editReply(`에러: ${err}`)
+            history.pop()
         }
     }
 }
