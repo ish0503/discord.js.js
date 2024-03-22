@@ -50,11 +50,10 @@ module.exports = {
             }
 
             history.splice(2, 2)
+
+            console.log(history)
           
             const result = await chat.sendMessageStream(args);
-    
-            console.log(result)
-            console.log(result.stream)
 
             let text = '';
             for await (const chunk of result.stream) {
