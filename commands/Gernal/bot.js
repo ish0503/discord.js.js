@@ -76,7 +76,11 @@ module.exports = {
         }catch(err){
             console.log(err)
             interaction.editReply(`에러: ${err}`)
-            history.pop()
+            if (history.length >= 2){
+                history.pop()
+                history.pop()
+            }
+            console.log(history)
         }
     }
 }
