@@ -52,6 +52,8 @@ module.exports = {
             //history.splice(2, 2)
 
             console.log(history)
+
+            history.foreach((element) => console.log(element))
           
             const result = await chat.sendMessageStream(args);
 
