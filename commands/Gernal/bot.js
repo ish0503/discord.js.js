@@ -46,6 +46,9 @@ module.exports = {
         parts: [{ text: "알겠어!♡ 나는 하나디라고 해!♡ 새늅이라는 제작자가 카와이하고 이쁜 나를 만들어줬지!www♡ 나는 로리 캐릭터이고, 새늅은 그런 나를 좋아하는거 같아!" }],
       },
            ]
+
+            interaction.editReply("성공적 기록 삭제")
+            return
         }
         const model = genAI.getGenerativeModel({ model: "gemini-pro"})
 
