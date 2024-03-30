@@ -6,9 +6,6 @@ const {
 
 const gambling_Schema = require("../../models/Money")
 const level_Sechma = require("../../models/level")
-const bank_Schema = require("../../models/bank")
-
-const bank = require("../stock/bank")
 
 module.exports = {
   data: new ContextMenuCommandBuilder()
@@ -29,10 +26,6 @@ module.exports = {
 
     const level_find = await level_Sechma.findOne({
         userid:User.id
-    })
-
-    const bank_find = await bank_Schema.findOne({
-      userid: User.id
     })
 
     let bot;
@@ -64,14 +57,6 @@ module.exports = {
         {
           name: "레벨",
           value: `**${(level_find?.level || 1).toLocaleString()}**`,
-        },
-        {
-          name: "저축량",
-          value: `**${(bank_find?.bankmoney || 0)} (+${(bank_find?.bankmoney || 0) * (bank.금리 / 100) * (bank_find?.bankmoneycount || 0)})**`,
-        },
-        {
-          name: "대출량",
-          value: `**${(bank_find?.interestmoney || 0)} (+${(bank_find?.interestmoney || 0) * (bank.금리 / 100) * (bank_find?.interestcount || 0)})**`,
         },
       );
     interaction.editReply({ embeds: [embed] });

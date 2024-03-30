@@ -38,6 +38,27 @@ module.exports = {
             .setMaxValue(100)
             .setRequired(true),
         ),
+    )
+    .addSubcommand((subcommand) =>
+        subcommand
+        .setName("징집")
+        .setDescription("군대를 징집할 땅을 구매하세요. (군사 1당 필요 돈: 10000원)")
+        .addIntegerOption((options) =>
+          options
+            .setName("번호")
+            .setDescription("구매할 땅의 번호를 입력하세요")
+            .setMinValue(1)
+            .setMaxValue(100)
+            .setRequired(true),
+        )
+        .addIntegerOption((options) =>
+          options
+            .setName("양")
+            .setDescription("징집할 병사들의 양을 적어주세요")
+            .setMinValue(1)
+            .setMaxValue(100)
+            .setRequired(true),
+        ),
     ),
     /**
      * 
@@ -201,8 +222,6 @@ module.exports = {
             ? statue["Other"]
             : statue["For Sale"]
 
-            
-
             var user = null
 
             if (lands_find.owner != ""){
@@ -211,12 +230,19 @@ module.exports = {
                 )
             }
 
+            var buildingsStr = ""
+            lands_find.buildings.forEach(element => {
+                buildingsStr = buildingsStr + element + " "
+            });
+
             const embed = new EmbedBuilder()
               .setDescription(args + "땅의 상세정보")
               .addFields(
                 { name: "땅 주인", value: `**${!user ? "없음" : user.username}**` },
                 { name: "땅 값", value: `**${lands_find.price.toLocaleString()}**` },
-
+                { name: "예상되는 주둔 군대", value: `**${Math.round(lands_find.army * (Math.random() * 10 / Player_lands_find.reconnaissance)).toLocaleString()}**` },
+                { name: "땅 레벨", value: `**${lands_find.level.toLocaleString()}**` },
+                { name: "지어진 건물", value: `**${buildingsStr}**` },
               )
               .setColor(color);
 
@@ -257,15 +283,11 @@ module.exports = {
             var ally = (Player_lands_find?.ally || [])
             var enemy = (Player_lands_find?.enemy || [])
 
-            console.log(lands)
-
             lands.push(args)
-
-            console.log(lands)
 
             await Player_lands_Schema.updateOne(
                 {userid: interaction.user.id},
-                {lands: lands, ally: ally, enemy: enemy},
+                {lands: lands, ally: ally, enemy: enemy, reconnaissance: Player_lands_find?.reconnaissance || 1},
                 {upsert:true}
             );
 
@@ -279,6 +301,52 @@ module.exports = {
             .setDescription(
                 `**성공적으로 땅을 구매했습니다. 남은 돈: ${
                     (gambling_find.money - lands_find.price).toLocaleString()
+                }**`
+            )
+            .setColor("Green");
+        
+        interaction.reply({embeds: [embed]});
+        }else if(interaction.options.getSubcommand() === "징집"){
+            const armypermoney = 10000
+            const args = interaction.options.getInteger("번호");
+            const args2 = interaction.options.getInteger("양");
+            const lands_find = await lands_Schema.findOne({
+                landsid:args
+            })
+            let gambling_find = await gambling_Schema.findOne({
+                userid:interaction.user.id
+            })
+
+            if (gambling_find.money < armypermoney * args2){
+                interaction.reply({
+                    content: `**돈이 부족합니다.\n\n당신의 돈: ${gambling_find.money.toLocaleString()}\n필요한 돈: ${(armypermoney * args2).toLocaleString()}**`,
+                });
+                return;
+            }
+
+            if (lands_find.owner != interaction.user.id){
+                interaction.reply({
+                    content: `**당신의 땅이 아닙니다.**`,
+                });
+                return;
+            }
+
+            await gambling_Schema.updateOne(
+                {userid: interaction.user.id},
+                {money: gambling_find.money - armypermoney * args2, cooltime: gambling_find.cooltime},
+                {upsert:true}
+            );
+
+            await lands_Schema.updateOne(
+                {landsid:args},
+                {army: lands_find.army + args2},
+                {upsert:true}
+            );
+
+            const embed = new EmbedBuilder()
+            .setDescription(
+                `**성공적으로 징집을 완료했습니다. 남은 돈: ${
+                    (gambling_find.money - armypermoney * args2).toLocaleString()
                 }**`
             )
             .setColor("Green");

@@ -15,7 +15,7 @@ module.exports = {
         
         const embed = new EmbedBuilder()
         .setTitle(`🏓퐁! 응답이 왔어요!`)
-        .setDescription(`🏓 커맨드 핑: ${msg.createdTimestamp - interaction.createdTimestamp}ms\n🏓 봇 핑 : ${interaction.client.ws.ping}ms`)
+        .setDescription(`🏓 커맨드 핑: ${msg.createdTimestamp - interaction.createdTimestamp}ms\n🏓 Api 핑 : ${interaction.client.ws.ping}ms`)
         .setColor(0xFFFF00)
 
         interaction.editReply({ embeds: [embed] })
