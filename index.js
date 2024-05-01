@@ -1,11 +1,3 @@
-const puppeteer = require('puppeteer');
-
-const browser = puppeteer.launch({
-  ignoreDefaultArgs: ['--disable-extensions'],
-});
-
-puppeteer.launch({ args: ['--no-sandbox'] });
-
 const dotenv = require("dotenv");
 dotenv.config();
 
