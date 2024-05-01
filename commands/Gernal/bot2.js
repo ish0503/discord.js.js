@@ -2,8 +2,6 @@ const CharacterAI = require('node_characterai');
 const characterAI = new CharacterAI();
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 
-characterAI.authenticateWithToken(process.env.CHARACTERAI);
-
 module.exports = {
     data: new SlashCommandBuilder()
 
@@ -22,6 +20,7 @@ module.exports = {
      */
     async execute(interaction){
         await interaction.deferReply()
+        await characterAI.authenticateWithToken(process.env.CHARACTERAI);
         const args = interaction.options.getString("내용")
         const characterId = "kZ3_qgkyiYvcRqgwv1WE2WQeME9CZy1yrCnMx98wyfk"
         const chat = await characterAI.createOrContinueChat(characterId);
