@@ -1,12 +1,10 @@
-const {join} = require('path');
+const puppeteer = require('puppeteer');
 
-/**
- * @type {import("puppeteer").Configuration}
- */
-module.exports = {
-    // Changes the cache location for Puppeteer.
-    cacheDirectory: join(__dirname, '.cache', 'puppeteer'),
-};
+const browser = await puppeteer.launch({
+  ignoreDefaultArgs: ['--disable-extensions'],
+});
+
+puppeteer.launch({ args: ['--no-sandbox'] });
 
 const dotenv = require("dotenv");
 dotenv.config();
