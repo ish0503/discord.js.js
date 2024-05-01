@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-const browser = await puppeteer.launch({
+const browser = puppeteer.launch({
   ignoreDefaultArgs: ['--disable-extensions'],
 });
 
