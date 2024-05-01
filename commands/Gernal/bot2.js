@@ -2,9 +2,7 @@ const CharacterAI = require('node_characterai');
 const characterAI = new CharacterAI();
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 
-(async() => {
-    await characterAI.authenticateWithToken(process.env.CHARACTERAI);
-})();
+characterAI.authenticateWithToken(process.env.CHARACTERAI);
 
 module.exports = {
     data: new SlashCommandBuilder()
