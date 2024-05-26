@@ -29,6 +29,13 @@ module.exports = {
         const args = interaction.options.getString("내용")
         const model = genAI.getGenerativeModel({ model: "gemini-pro"})
 
+        if (args == "delete_history")
+        {
+            history = []
+            interaction.editReply("삭제 완료")
+            return
+        }
+
         try{
 
             const chat = model.startChat({
