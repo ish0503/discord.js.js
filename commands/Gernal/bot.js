@@ -2,6 +2,8 @@ const { EmbedBuilder, SlashCommandBuilder } = require("discord.js")
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { table } = require("console");
 
+const translatte = require('translatte');
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI);
 
 const history = []
@@ -57,6 +59,15 @@ module.exports = {
     
                 interaction.editReply({ embeds: [embed] })
             }
+
+            translatte(text, {to: "ja"}).then(res => {
+                console.log(res.text);
+
+            }).catch(err => {
+                console.error(err);
+            });
+
+            
         }catch(err){
             console.log(err)
             interaction.editReply(`에러: ${err}`)
