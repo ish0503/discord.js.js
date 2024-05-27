@@ -34,7 +34,7 @@ module.exports = {
         })
         const player = createAudioPlayer();
 
-        const resource = await probeAndCreateResource(createReadStream('music/Shiroko.mp3'));
+        const resource = await probeAndCreateResource(createReadStream('music/UnwelcomeSchool.mp3'));
         
         connection.subscribe(player)
         player.play(resource)
