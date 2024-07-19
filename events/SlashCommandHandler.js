@@ -14,14 +14,14 @@ module.exports = {
       
       if(!command) return;
 
-      const list = client.guilds.cache.get("1064545201647013978");
-      var members
-      try{
-        members = await list.members.fetch(interaction.user.id)
-      }catch (err){
-        await interaction.reply("이 봇은 현재 공공적 목적으로 만들지 않았기 때문에 특정 사람만 이용 가능합니다.")
-        return;
-      }
+      // const list = client.guilds.cache.get("1064545201647013978");
+      // var members
+      // try{
+      //   members = await list.members.fetch(interaction.user.id)
+      // }catch (err){
+      //   await interaction.reply("이 봇은 현재 공공적 목적으로 만들지 않았기 때문에 특정 사람만 이용 가능합니다.")
+      //   return;
+      // }
       await command.execute(interaction);
       return;
 
