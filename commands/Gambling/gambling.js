@@ -45,7 +45,7 @@ module.exports = {
             )
 
             const embed = new EmbedBuilder()
-            .setTitle(`승리하였습니다!`)
+            .setTitle(`승리!`)
             .setColor("Green")
             .setDescription(`**와..! 대단해! ${win_standard}% 확률에서 이겼어!\n+${bettingGold.toLocaleString()}**`)
 
@@ -58,7 +58,7 @@ module.exports = {
             )
 
             const embed = new EmbedBuilder()
-            .setTitle(`패배하셨습니다..`)
+            .setTitle(`패배..`)
             .setColor("Red")
             .setDescription(`**에.. ${win_standard}% 확률에서 졌어,,\n-${bettingGold.toLocaleString()}**`)
 

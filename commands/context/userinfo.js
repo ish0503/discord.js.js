@@ -35,7 +35,7 @@ module.exports = {
       bot = "사람이야!";
     }
     const embed = new EmbedBuilder()
-      .setTitle(`${User.tag} 또는 ${User.globalName}님의 유저정보`)
+      .setTitle(`${User.tag} 또는 ${User.globalName}센세의 유저정보`)
       .setColor(User.accentColor || "Green")
       .setTimestamp()
       .setThumbnail(`${User.displayAvatarURL({ dynamic: true })}`)

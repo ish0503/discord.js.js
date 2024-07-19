@@ -261,14 +261,14 @@ module.exports = {
 
             if (gambling_find.money < lands_find.price){
                 interaction.reply({
-                    content: `**돈이 부족합니다.\n\n당신의 돈: ${gambling_find.money.toLocaleString()}\n땅 값: ${lands_find.price.toLocaleString()}**`,
+                    content: `**돈이 부족해!\n\n센세의 돈: ${gambling_find.money.toLocaleString()}¥\n땅 값: ${lands_find.price.toLocaleString()}¥**`,
                 });
                 return;
             }
 
             if (lands_find.owner != ""){
                 interaction.reply({
-                    content: `**판매중인 땅이 아닙니다.**`,
+                    content: `**판매중인 땅이 아니야..**`,
                 });
                 return;
             }
@@ -299,9 +299,9 @@ module.exports = {
 
             const embed = new EmbedBuilder()
             .setDescription(
-                `**성공적으로 땅을 구매했습니다. 남은 돈: ${
+                `**성공적으로 땅을 구매했어! 남은 돈: ${
                     (gambling_find.money - lands_find.price).toLocaleString()
-                }**`
+                }¥**`
             )
             .setColor("Green");
         
@@ -319,14 +319,14 @@ module.exports = {
 
             if (gambling_find.money < armypermoney * args2){
                 interaction.reply({
-                    content: `**돈이 부족합니다.\n\n당신의 돈: ${gambling_find.money.toLocaleString()}\n필요한 돈: ${(armypermoney * args2).toLocaleString()}**`,
+                    content: `**돈이 부족해!\n\n센세의 돈: ${gambling_find.money.toLocaleString()}¥\n필요한 돈: ${(armypermoney * args2).toLocaleString()}¥**`,
                 });
                 return;
             }
 
             if (lands_find.owner != interaction.user.id){
                 interaction.reply({
-                    content: `**당신의 땅이 아닙니다.**`,
+                    content: `**센세의 땅이 아니야..**`,
                 });
                 return;
             }
@@ -345,9 +345,9 @@ module.exports = {
 
             const embed = new EmbedBuilder()
             .setDescription(
-                `**성공적으로 징집을 완료했습니다. 남은 돈: ${
+                `**성공적으로 징집을 완료했어! 남은 돈: ${
                     (gambling_find.money - armypermoney * args2).toLocaleString()
-                }**`
+                }¥**`
             )
             .setColor("Green");
         

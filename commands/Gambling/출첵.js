@@ -31,7 +31,7 @@ module.exports = {
                     );
                     const embeds = new EmbedBuilder()
                     .setTitle("출석체크를 완료했어.")
-                    .setDescription(`1번째 <@${interaction.member.user.id}> 출석체크 완료! (+ 10000¥)`)      
+                    .setDescription(`1번째 <@${interaction.member.user.id}> 출석체크 완료! (+ 10,000¥)`)      
                     .setColor(`Blue`)
                     .setTimestamp()
                     //.setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 
@@ -62,7 +62,7 @@ module.exports = {
                     );
                     const embedsss = new EmbedBuilder()
                     .setTitle("출석체크를 완료했어.")
-                    .setDescription(`${parseInt(user.count) + 1}번째 <@${interaction.member.user.id}> 출석체크 완료! (+ ${random}¥)`)
+                    .setDescription(`${parseInt(user.count) + 1}번째 <@${interaction.member.user.id}> 출석체크 완료! (+ ${random.toLocaleString()}¥)`)
                     .setColor(`Green`)
                     .setTimestamp()
                     //.setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 

@@ -13,7 +13,7 @@ module.exports = {
      */
     async execute(interaction){
         if (interaction.user.username == "birdnoob"){
-            interaction.reply("땅초기화를 진행합니다.")
+            interaction.reply("땅초기화를 진행할게!")
             for (let index = 1; index < 101; index++) {
                 console.log(index + "번째 데이터 저장중")
                 await lands_Schema.updateOne(
@@ -28,7 +28,7 @@ module.exports = {
                     {upsert:true}
                 ).then(() => console.log(index + "번째 데이터 저장완료"))
             }
-            interaction.channel.send("모든 땅 초기화를 완료하였습니다.")
+            interaction.channel.send("모든 땅 초기화를 완료했어. 헤헷..")
         }else{
             interaction.reply("삐빕- 에러발생-")
         }

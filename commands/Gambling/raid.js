@@ -94,7 +94,7 @@ module.exports = {
                 ephemeral: true
               })
               interaction.channel.send({
-                  content: `${inter.user.username}님이 레이드에 참가했어!`
+                  content: `${inter.user.username}센세가 레이드에 참가했어!`
               })
           }else{
             inter.reply({

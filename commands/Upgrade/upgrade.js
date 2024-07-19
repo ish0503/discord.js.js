@@ -106,7 +106,7 @@ module.exports = {
         const canGiveTime = Number(gambling_find.cooltime) + 1 * 30 * 1000;
         if (canGiveTime && canGiveTime > Date.now()) {
           interaction.reply({
-            content: `**아이템 강화/생성 후에는 쿨타임이 있습니다.\n<t:${Math.round(
+            content: `**아이템 강화/생성 후에는 쿨타임이 있어.\n<t:${Math.round(
               canGiveTime / 1000,
             )}> (<t:${Math.round(canGiveTime / 1000)}:R>)**`,
           });
@@ -115,7 +115,7 @@ module.exports = {
       }
       if (!gambling_find) {
         interaction.reply({
-          content: `/아이템 생성을 먼저 해주세요.`,
+          content: `/아이템 생성을 먼저 해줘.`,
         });
         return;
       }
@@ -136,7 +136,7 @@ module.exports = {
 
       if (isitem == -1) {
         const embed = new EmbedBuilder()
-          .setDescription(`**당신에게 없는 아이템을 강화하라구요? 참나**`)
+          .setDescription(`**센세에게 없는 아이템을 강화할 수 없어!**`)
           .setColor("Red");
 
         interaction.reply({ embeds: [embed] });
@@ -190,7 +190,7 @@ module.exports = {
         const embed = new EmbedBuilder()
           .setTitle(`아이템 파괴 방어`)
           .setDescription(
-            `**당신의 방어권으로 아이템이 파괴 될 뻔했는데!! 보존되었습니다. \n남은 방어권: ${
+            `**센세의 방어권으로 아이템이 파괴 될 뻔했는데!! 보존되었어! 와! \n남은 방어권: ${
               gambling_find?.defense - 10
             }개 (10개 사용함)**`,
           )
@@ -210,7 +210,7 @@ module.exports = {
             }%`,
           )
           .setDescription(
-            `**당신의 방어권으로 아이템이 보존되었습니다. \n남은 방어권: ${
+            `**센세의 방어권으로 아이템이 보존되었어! \n남은 방어권: ${
               gambling_find?.defense - 1
             }개**`,
           )
@@ -267,7 +267,7 @@ module.exports = {
         const embed = new EmbedBuilder()
           .setTitle(`**아이템 파괴..**`)
           .setDescription(
-            `**${percent}% 확률로 아이템이 파괴되었습니다.. 이름: ${args}**\n(아이템 파괴를 막을려면 방어권 10개가 필요합니다.)`,
+            `**${percent}% 확률로 아이템이 파괴되었어.. 미야내..(ㄒoㄒ) 이름: ${args}**\n(아이템 파괴를 막을려면 방어권 10개가 필요해.. 미리 사두는걸 추천해!)`,
           )
           .setColor("Red");
 
@@ -414,7 +414,7 @@ module.exports = {
         const canGiveTime = Number(gambling_find.cooltime) + 1 * 30 * 1000;
         if (canGiveTime && canGiveTime > Date.now()) {
           interaction.reply({
-            content: `**아이템 강화/생성 후에는 쿨타임이 있습니다.\n<t:${Math.round(
+            content: `**아이템 강화/생성 후에는 쿨타임이 있어.\n<t:${Math.round(
               canGiveTime / 1000,
             )}> (<t:${Math.round(canGiveTime / 1000)}:R>)**`,
           });
@@ -434,7 +434,7 @@ module.exports = {
         if (isitem != -1) {
           const embed = new EmbedBuilder()
             .setDescription(
-              `**이미 당신에게 있는 아이템을 또 생성할 수 없습니다.**`,
+              `**이미 센세에게 있는 아이템을 또 생성할 수 없어!**`,
             )
             .setColor("Red");
 
@@ -444,7 +444,7 @@ module.exports = {
 
         if (length > 5) {
           const embed = new EmbedBuilder()
-            .setDescription(`**5개 이상의 아이템을 생성할 수 없습니다.**`)
+            .setDescription(`**5개 이상의 아이템을 생성할 수 없어!**`)
             .setColor("Red");
 
           interaction.reply({ embeds: [embed] });
@@ -454,7 +454,7 @@ module.exports = {
 
       if (!money_find || money_find.money < 25000) {
         const embed = new EmbedBuilder()
-          .setDescription(`**아이템을 생성하려면 돈 25000재화가 필요합니다.**`)
+          .setDescription(`**아이템을 생성하려면 돈 25,000¥이 필요해.**`)
           .setColor("Red");
 
         interaction.reply({ embeds: [embed] });
@@ -481,7 +481,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setDescription(
-          `**25000재화를 주고 아이템이 생성 되었습니다. 이름: ${args}, 강화 수: 0**`,
+          `**25,000¥를 주고 아이템을 생성했어. 이름: ${args}, 강화 수: 0**`,
         )
         .setColor("Green");
 
@@ -494,7 +494,7 @@ module.exports = {
 
       if (!gambling_find) {
         interaction.reply({
-          content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`,
+          content: `**아이템이 없네.. \`/아이템\` 명령어로 아이템을 생성해봐!**`,
         });
         return;
       }
@@ -516,7 +516,7 @@ module.exports = {
       if (isitem == -1) {
         const embed = new EmbedBuilder()
           .setDescription(
-            `**아이템을 찾을 수 없습니다.. 공기라도 없애라는 건가요?**`,
+            `**아이템을 찾을 수 없어.. 공기라도 없앨까..?**`,
           )
           .setColor("Red");
 
@@ -539,7 +539,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setDescription(
-          `**아이템이 성공적으로 삭제 되었습니다. 이름: ${args}**`,
+          `**아이템이 성공적으로 삭제 되었어. 이름: ${args}**`,
         )
         .setColor("Green");
 
@@ -551,13 +551,13 @@ module.exports = {
 
       if (!gambling_find) {
         interaction.reply({
-          content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`,
+          content: `**아이템이 없네.. \`/아이템\` 명령어로 아이템을 생성해봐!**`,
         });
         return;
       }
 
       const embed = new EmbedBuilder()
-        .setDescription(`**${interaction.user}님의 아이템**`)
+        .setDescription(`**${interaction.user}센세의 아이템**`)
         .setColor("Green");
 
       let length = gambling_find.hashtags.length;
@@ -587,7 +587,7 @@ module.exports = {
 
       if (!gambling_find) {
         interaction.reply({
-          content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`,
+          content: `**아이템이 없네.. \`/아이템\` 명령어로 아이템을 생성해봐!**`,
         });
         return;
       }
@@ -614,7 +614,7 @@ module.exports = {
       if (isitem == -1) {
         const embed = new EmbedBuilder()
           .setDescription(
-            `**아이템을 찾을 수 없습니다.. 공기라도 바꾸라는 건가요?**`,
+            `**아이템을 찾을 수 없어.. 공기라도 바꿀까?**`,
           )
           .setColor("Red");
 
@@ -638,7 +638,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setDescription(
-          `**아이템이 성공적으로 변경 되었습니다. ${args2}로요.**`,
+          `**아이템이 성공적으로 변경 되었어. ${args2}로!**`,
         )
         .setColor("Green");
 
@@ -705,7 +705,7 @@ module.exports = {
 
       if (!gambling_find) {
         interaction.reply({
-          content: `**아이템이 없으시군요.. \`/아이템\` 명령어로 아이템을 생성하세요.**`,
+          content: `**아이템이 없네.. \`/아이템\` 명령어로 아이템을 생성해봐!**`,
         });
         return;
       }
@@ -718,9 +718,9 @@ module.exports = {
       const row = new ActionRowBuilder().addComponents(confirm);
 
       const msg = await interaction.reply({
-        content: `방어권 ${args} 개를 사시겠습니까? 가격: ${(
+        content: `방어권 ${args} 개를 살거야? 가격: ${(
           args * 50000
-        ).toLocaleString()}재화`,
+        ).toLocaleString()}¥`,
         components: [row],
       });
 
@@ -734,7 +734,7 @@ module.exports = {
         try {
           if (!money_find || money_find.money < args * 50000) {
             const embed = new EmbedBuilder()
-              .setDescription(`**돈이 부족합니다**`)
+              .setDescription(`**돈이 부족해**`)
               .setColor("Red");
 
             interaction.reply({ embeds: [embed], ephemeral: true });
@@ -757,7 +757,7 @@ module.exports = {
           );
 
           inter.reply({
-            content: "성공적으로 구매되었습니다.",
+            content: "성공적으로 구매되었어!",
             ephemeral: true,
           });
         } catch (error) {
