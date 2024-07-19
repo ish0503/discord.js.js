@@ -8,6 +8,8 @@ const {
 const { createReadStream } = require('fs');
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js")
 
+const player = createAudioPlayer();
+
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("사운드")
@@ -79,7 +81,6 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
-        const player = createAudioPlayer();
         if (interaction.options.getSubcommand() === "play") {
             const string = interaction.options.getString('종류');
             async function probeAndCreateResource(readableStream) {
