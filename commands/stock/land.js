@@ -78,6 +78,8 @@ module.exports = {
                 userid:interaction.user.id
             })
 
+            const lands_finds = await lands_Schema.find()
+            
             interaction.reply("# **현재 땅**")
 
             const canvas = Canvas.createCanvas(300, 300)
@@ -88,10 +90,7 @@ module.exports = {
             // context.fillRect(0, 0, canvas.width, canvas.height);
             for (let i2 = 1; i2 < 11; i2++) {
                 for (let i = 1; i < 11; i++) {
-                    const lands_find = await lands_Schema.findOne({
-                        landsid:(i2 - 1) * 10 + i
-                    })
-
+                    const lands_find = lands_finds[(i2 - 1) * 10 + i - 1]
                     const playerland = (Player_lands_find?.lands || [])
                     const playerally = (Player_lands_find?.ally || [])
                     const playerenemy = (Player_lands_find?.enemy || [])
