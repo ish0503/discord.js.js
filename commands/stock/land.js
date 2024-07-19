@@ -165,7 +165,7 @@ module.exports = {
             }]
             });
 
-            interaction.channel.send("노란색: 판매중인 땅\n초록색: 보유한 땅\n파란색: 동맹국 땅\n빨간색: 적 땅\n흰색: 중립")
+            interaction.channel.send("초록색: 보유한 땅\n노란색: 판매중인 땅\n파란색: 동맹국 땅\n빨간색: 적 땅\n흰색: 중립\n\n땅은 총 100개나 있다구~")
         }else if(interaction.options.getSubcommand() === "상세확인"){
             const args = interaction.options.getInteger("번호");
 
