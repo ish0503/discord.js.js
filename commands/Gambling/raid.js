@@ -36,7 +36,7 @@ module.exports = {
       console.log(interaction.channel.id)
     if (raid){
       await interaction.editReply({
-          content: `이 채널에서 이미 레이드가 진행중입니다.`,
+          content: `한 채널당 하나의 레이드가 룰이야! 이미 채널에 레이드가 진행중인가봐!`,
       });
       return;
     }
@@ -56,7 +56,7 @@ module.exports = {
           .addComponents(confirm);
 
       const msg = await interaction.editReply({
-          content: `참가하시겠습니까?`,
+          content: `참가할랭?`,
           components: [row],
       });
 
@@ -73,7 +73,7 @@ module.exports = {
           })
           if (!raid){
             inter.reply({
-                content: `레이드를 찾지 못함.`,
+                content: `레이드를 찾지 못했어.. 미야내..`,
                 ephemeral: true
             });
             return;
@@ -90,15 +90,15 @@ module.exports = {
                   {upsert:true}
               );
               inter.reply({
-                content: `성공적으로 참가되었습니다.`,
+                content: `성공적으로 참가됬어 센세!`,
                 ephemeral: true
               })
               interaction.channel.send({
-                  content: `${inter.user.username}님이 레이드에 참가하였습니다.`
+                  content: `${inter.user.username}님이 레이드에 참가했어!`
               })
           }else{
             inter.reply({
-              content: `이미 레이드에 참가해있습니다.`,
+              content: `이미 레이드에 참가해있어.`,
               ephemeral: true
             })
           }
@@ -112,28 +112,28 @@ module.exports = {
 
       await wait(10000)
 
-      interaction.channel.send("이제 시작합니다.")
+      interaction.channel.send("이제 몹이 나온다!")
 
       interaction.deleteReply()
 
       var monsters = [
-        { name: '라스 카르니안 케스', hp: 25000, reward: 50, XPreward:500 },
-        { name: '흑화한 봇', hp: 30000, reward: 60, XPreward:600 },
+        { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 3000, XPreward:300 },
+        
+        { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 3000, XPreward:300 },
+        
+        { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
         { name: '검은 새늅봇', hp: 15000, reward: 30, XPreward:300 },
         
-        { name: '라스 카르니안 케스', hp: 25000, reward: 50, XPreward:500 },
-        { name: '흑화한 봇', hp: 30000, reward: 60, XPreward:600 },
-        { name: '검은 새늅봇', hp: 15000, reward: 30, XPreward:300 },
+        { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 3000, XPreward:300 },
         
-        { name: '라스 카르니안 케스', hp: 25000, reward: 50, XPreward:500 },
-        { name: '흑화한 봇', hp: 30000, reward: 60, XPreward:600 },
-        { name: '검은 새늅봇', hp: 15000, reward: 30, XPreward:300 },
-        
-        { name: '라스 카르니안 케스', hp: 25000, reward: 50, XPreward:500 },
-        { name: '흑화한 봇', hp: 30000, reward: 60, XPreward:600 },
-        { name: '검은 새늅봇', hp: 15000, reward: 30, XPreward:300 },
-        
-        { name: '죽음', hp: 50000, reward: 100, XPreward:1000 },
+        { name: '죽음', hp: 50000, reward: 10000, XPreward:1000 },
       ];
 
       const monster = getRandomMonster();
@@ -245,7 +245,7 @@ module.exports = {
         await wait(1000)
 
         if (monster.hp <= 0){
-          interaction.channel.send(`${monster.name}: 강력한 녀석들.. 내가 졌다..`);
+          interaction.channel.send(`${monster.name}: ...`);
           for (var i3=0; i3 < raid.userid.length; i3++){
             const gambling_find = await gambling_Schema.findOne({
               userid:raid.userid[i3]
@@ -269,7 +269,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle("레이드 성공")
             .setDescription(
-                `${monster.name}을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                `대다내! ${monster.name}을(를) 쓰러뜨렸어! 보상으로 ${monster.reward.toLocaleString()}¥, ${monster.XPreward.toLocaleString()}레벨을 얻었어!`
             )
             .setColor("Green");
         
@@ -299,7 +299,7 @@ module.exports = {
           const embed = new EmbedBuilder()
           .setTitle("레이드 실패")
           .setDescription(
-              `${monster.name}를 잡는데 실패하였습니다.. 하지만 괜찮아요! 보상으로 ${Math.round(monster.reward / 100).toLocaleString()}돈, ${Math.round(monster.XPreward / 100).toLocaleString()}레벨 을 얻었습니다.`
+              `${monster.name}를 잡는데 실패했어.. 이부키가 격려해줄게! ${Math.round(monster.reward / 100).toLocaleString()}¥, ${Math.round(monster.XPreward / 100).toLocaleString()}레벨을 얻었어.`
           )
           .setColor("Green");
       

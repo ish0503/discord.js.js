@@ -24,13 +24,13 @@ module.exports = {
 
         if (!gambling_find){
             interaction.reply({
-                content: `**돈이 없으시군요.. 돈을 어떻게든 얻어보세요.**`
+                content: `**센세.. 돈 데이터 없으면 못해, 알고 있지?＞﹏＜**`
             })
             return
         }
 
         if(gambling_find.money < bettingGold){
-            interaction.reply({content:`**잔액이 부족해요**`})
+            interaction.reply({content:`**돈이 업쪄..**`})
             return
         }
 
@@ -47,7 +47,7 @@ module.exports = {
             const embed = new EmbedBuilder()
             .setTitle(`승리하였습니다!`)
             .setColor("Green")
-            .setDescription(`**이길 확률 ${win_standard}% 에서 승리하셨습니다!\n+${bettingGold.toLocaleString()}**`)
+            .setDescription(`**와..! 대단해! ${win_standard}% 확률에서 이겼어!\n+${bettingGold.toLocaleString()}**`)
 
             interaction.reply({embeds:[embed]})
         } else {
@@ -60,7 +60,7 @@ module.exports = {
             const embed = new EmbedBuilder()
             .setTitle(`패배하셨습니다..`)
             .setColor("Red")
-            .setDescription(`**이길 확률 ${win_standard}% 에서 패배하셨습니다..\n-${bettingGold.toLocaleString()}**`)
+            .setDescription(`**에.. ${win_standard}% 확률에서 졌어,,\n-${bettingGold.toLocaleString()}**`)
 
             interaction.reply({embeds:[embed]})
         }

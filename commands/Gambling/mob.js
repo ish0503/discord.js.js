@@ -28,14 +28,14 @@ module.exports = {
 
     if (!gambling_find) {
       interaction.editReply({
-        content: `**돈이 없으시군요.. 돈을 어떻게든 얻어보세요.**`,
+        content: `**센세.. 돈 데이터 없으면 못해, 알고 있지?＞﹏＜**`,
       });
       return;
     }
 
     if (cooldown.find((element) => element == interaction.user.id)) {
       interaction.editReply({
-        content: `**현재 이미 명령어를 실행하고 있습니다.**`,
+        content: `**한 사람당 하나의 사냥이 룰이야! 두개는 안된다구!**`,
       });
       return;
     }
@@ -317,7 +317,7 @@ module.exports = {
           break;
         }
         if (i >= random) {
-          interaction.editReply(`오히려 당신이 사냥당했다..`);
+          interaction.editReply(`으악.. 져버렸네..`);
           clear();
           return;
         }
@@ -381,9 +381,9 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setTitle("사냥 성공")
         .setDescription(
-          `<@${interaction.user.id}> ${
+          `<@${interaction.user.id}> 센세! ${
             monster.name
-          }을(를) 쓰러뜨렸습니다! 보상으로 ${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`,
+          }을(를) 쓰러뜨렸어! 몬스터가 ${monster.reward.toLocaleString()}¥, ${monster.XPreward.toLocaleString()}레벨을 줘써!!`,
         )
         .setColor("Green");
 

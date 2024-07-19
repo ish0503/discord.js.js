@@ -30,7 +30,7 @@ module.exports = {
                         {upsert:true}
                     );
                     const embeds = new EmbedBuilder()
-                    .setTitle("출석체크를 완료했어요.")
+                    .setTitle("출석체크를 완료했어.")
                     .setDescription(`1번째 <@${interaction.member.user.id}> 출석체크 완료! (+ 10000 재화)`)      
                     .setColor(`Blue`)
                     .setTimestamp()
@@ -41,8 +41,8 @@ module.exports = {
                     //.setFooter(`${interaction.member.user}`, interaction.member.user.displayAvatarURL()) 
                     if (user.date == date){
                         const embedss = new EmbedBuilder()
-                        .setTitle("출석 체크 이미 완료. 내일 또 와요 !")
-                        .setDescription(`<@${interaction.member.user.id}>님은 이미 출석을 한 상태입니다.`)
+                        .setTitle("출석 체크 이미 완료. 내일 또 와 !")
+                        .setDescription(`<@${interaction.member.user.id}>센세는 이미 출석을 한 상태야.`)
                         .setColor(`Red`)
                         .setTimestamp()
                         interaction.reply({embeds: [embedss]})
@@ -61,8 +61,8 @@ module.exports = {
                         {upsert:true}
                     );
                     const embedsss = new EmbedBuilder()
-                    .setTitle("출석체크를 완료했어요.")
-                    .setDescription(`${parseInt(user.count) + 1}번째 <@${interaction.member.user.id}> 출석체크 완료! (+ ${random} 재화)`)
+                    .setTitle("출석체크를 완료했어.")
+                    .setDescription(`${parseInt(user.count) + 1}번째 <@${interaction.member.user.id}> 출석체크 완료! (+ ${random}¥)`)
                     .setColor(`Green`)
                     .setTimestamp()
                     //.setFooter(`${interaction.member.user.tag}`, interaction.member.user.displayAvatarURL()) 

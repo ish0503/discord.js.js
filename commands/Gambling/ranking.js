@@ -34,7 +34,7 @@ module.exports = {
             )
             embed.addFields({
                 name: `${i + 1}. ${user.username}`,
-                value: `${interaction.client.user.username} 돈 : ${Number(gambling_find[i].money).toLocaleString()}재화`
+                value: `${interaction.client.user.username} 돈 : ${Number(gambling_find[i].money).toLocaleString()}¥`
             })
         }
 

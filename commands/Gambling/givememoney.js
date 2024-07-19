@@ -4,7 +4,7 @@ const gambling_Schema = require("../../models/Money")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("지원금")
-    .setDescription("이 봇은 공짜로! 당신께 돈을 줄 수 있습니다."),
+    .setDescription("공짜로! 당신께 돈을 줄 수 있습니다."),
 
     /**
      * 
@@ -20,9 +20,9 @@ module.exports = {
             const canGiveTime = Number(gambling_find.cooltime) + (30 * 60 * 1000)
             if (canGiveTime && canGiveTime > Date.now()){
                 interaction.reply({
-                    content: `**지원금을 받을수 없습니다.\n<t:${Math.round(
+                    content: `**나도 돈 열심히 모으고 있으니까...\n<t:${Math.round(
                         canGiveTime / 1000
-                    )}> (<t:${Math.round(canGiveTime / 1000)}:R>)에 받으세요**`,
+                    )}> (<t:${Math.round(canGiveTime / 1000)}:R>)에 받아!**`,
                 });
                 return;
             }
@@ -38,9 +38,9 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setDescription(
-                `**💰 지원금이 도착했습니다. ${
+                `**💰 여기 돈! 지갑에 총 ${
                     moneyvalue.toLocaleString()
-                }재화가 당신에게 있습니다. +${지원금}$**`
+                }엔이 있네! +${지원금}¥**`
             )
             .setColor("Green");
         

@@ -30,9 +30,9 @@ module.exports = {
 
     let bot;
     if (User.bot == true) {
-      bot = "봇입니다";
+      bot = "봇이야!";
     } else {
-      bot = "이 사람이 봇이겠어요?";
+      bot = "사람이야!";
     }
     const embed = new EmbedBuilder()
       .setTitle(`${User.tag} 또는 ${User.globalName}님의 유저정보`)

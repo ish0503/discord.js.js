@@ -25,7 +25,7 @@ module.exports = {
         await interaction.deferReply({ephemeral: true})
 
         if (!interaction.member.voice.channelId) 
-            return interaction.editReply({content: "보이스 채널에 입장해주세요."})
+            return interaction.editReply({content: "보이스 채널에 입장해줘!"})
 
         const connection = joinVoiceChannel({
             channelId: interaction.member.voice.channelId,

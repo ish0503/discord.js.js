@@ -14,7 +14,7 @@ module.exports = {
         const msg = await interaction.deferReply()
         
         const embed = new EmbedBuilder()
-        .setTitle(`🏓퐁! 응답이 왔어요!`)
+        .setTitle(`🏓퐁!`)
         .setDescription(`🏓 커맨드 핑: ${msg.createdTimestamp - interaction.createdTimestamp}ms\n🏓 Api 핑 : ${interaction.client.ws.ping}ms`)
         .setColor(0xFFFF00)
 
