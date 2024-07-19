@@ -234,18 +234,23 @@ module.exports = {
                 buildingsStr = buildingsStr + element + " "
             });
 
+            var army = Math.round(lands_find.army * (Math.random() * 10 / Player_lands_find.reconnaissance))
+            if (playerland.filter((land) => land == args).length != 0){
+                army = lands_find.army
+            }
+
             const embed = new EmbedBuilder()
               .setDescription(args + "땅의 상세정보")
               .addFields(
                 { name: "땅 주인", value: `**${!user ? "없음" : user.username}**` },
                 { name: "땅 값", value: `**${lands_find.price.toLocaleString()}**` },
-                { name: "예상되는 주둔 군대", value: `**${Math.round(lands_find.army * (Math.random() * 10 / Player_lands_find.reconnaissance)).toLocaleString()}**` },
+                { name: "예상되는 주둔 군대", value: `**${army.toLocaleString()}**` },
                 { name: "땅 레벨", value: `**${lands_find.level.toLocaleString()}**` },
                 { name: "지어진 건물", value: `**${buildingsStr}**` },
               )
               .setColor(color);
 
-              interaction.reply({embeds : [embed]})
+              interaction.reply({embeds : [embed], ephemeral: true})
         }else if(interaction.options.getSubcommand() === "구매"){
             const args = interaction.options.getInteger("번호");
             const lands_find = await lands_Schema.findOne({
