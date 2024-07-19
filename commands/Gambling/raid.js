@@ -127,7 +127,7 @@ module.exports = {
         
         { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
         { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
-        { name: '검은 새늅봇', hp: 15000, reward: 30, XPreward:300 },
+        { name: '검은 새늅봇', hp: 15000, reward: 3000, XPreward:300 },
         
         { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
         { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
