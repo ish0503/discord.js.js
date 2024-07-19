@@ -116,7 +116,9 @@ module.exports = {
     
             interaction.editReply({content: "음악 실행할게."})
         }else if(interaction.options.getSubcommand() === "stop"){
+            await interaction.deferReply({ephemeral: true})
             player.stop();
+            interaction.editReply({content: "음악 중지 했어!"})
         }
     }
 }
