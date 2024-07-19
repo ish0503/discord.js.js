@@ -117,23 +117,23 @@ module.exports = {
       interaction.deleteReply()
 
       var monsters = [
-        { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
-        { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
-        { name: '검은 새늅봇', hp: 15000, reward: 3000, XPreward:300 },
+        { name: '라스 카르니안 케스', hp: 25000, reward: 50000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 60000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 30000, XPreward:300 },
         
-        { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
-        { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
-        { name: '검은 새늅봇', hp: 15000, reward: 3000, XPreward:300 },
+        { name: '라스 카르니안 케스', hp: 25000, reward: 50000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 60000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 30000, XPreward:300 },
         
-        { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
-        { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
-        { name: '검은 새늅봇', hp: 15000, reward: 3000, XPreward:300 },
+        { name: '라스 카르니안 케스', hp: 25000, reward: 50000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 60000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 30000, XPreward:300 },
         
-        { name: '라스 카르니안 케스', hp: 25000, reward: 5000, XPreward:500 },
-        { name: '흑화한 봇', hp: 30000, reward: 6000, XPreward:600 },
-        { name: '검은 새늅봇', hp: 15000, reward: 3000, XPreward:300 },
+        { name: '라스 카르니안 케스', hp: 25000, reward: 50000, XPreward:500 },
+        { name: '흑화한 봇', hp: 30000, reward: 60000, XPreward:600 },
+        { name: '검은 새늅봇', hp: 15000, reward: 30000, XPreward:300 },
         
-        { name: '죽음', hp: 50000, reward: 10000, XPreward:1000 },
+        { name: '죽음', hp: 50000, reward: 100000, XPreward:1000 },
       ];
 
       const monster = getRandomMonster();
