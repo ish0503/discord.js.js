@@ -11,7 +11,7 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
-        const 지원금 = 30000
+        const 지원금 = 10000
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
         })
