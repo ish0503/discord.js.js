@@ -8,7 +8,7 @@ module.exports = {
   async execute(client) {
     let number = 0
     setInterval(() => {
-        const list = [`새늅 골을 썩게`] 
+        const list = [`블루 아카이브`, `센세 기다리기`] 
         if(number == list.length) number = 0
         client.user.setActivity(list[number],{
             type: Client.Playing
