@@ -42,7 +42,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
         subcommand
         .setName("징집")
-        .setDescription("군대를 징집할 땅을 구매하세요. (군사 1당 필요 돈: 10000원)")
+        .setDescription("군대를 징집할 땅을 구매하세요. (군사 1당 필요 돈: 10000엔)")
         .addIntegerOption((options) =>
           options
             .setName("번호")
