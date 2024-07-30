@@ -1,5 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 const gambling_Schema = require("../../models/Money")
+const wait = require("node:timers/promises").setTimeout;
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -17,6 +18,7 @@ module.exports = {
      * @param {import(*discord.js*).ChatInputCommandInteraction} interaction
      */
     async execute(interaction){
+        await interaction.deferReply()
         const bettingGold = interaction.options.getInteger("베팅금",true)
         const gambling_find = await gambling_Schema.findOne({
             userid:interaction.user.id
@@ -33,8 +35,6 @@ module.exports = {
             interaction.reply({content:`**돈이 업쪄..**`})
             return
         }
-
-        interaction.reply("이부키가 센세를 위한 옵션을 찾고 있어..")
 
         const confirm = new ButtonBuilder()
         .setCustomId(`옵션1`)
@@ -58,7 +58,7 @@ module.exports = {
             .addComponents(confirm, confirm2, confirm3);
     
         const msg = await interaction.editReply({
-            content: `큰 판 해볼랭?`,
+            content: `이부키가 센세를 위해 준비한 옵션들이야`,
             components: [row],
         });
 
@@ -69,31 +69,34 @@ module.exports = {
     
         collector.on("collect", async (inter) => {
         console.log(inter.user)
-        console.log(inter)
         console.log(inter.customId)
         try{
+            if (inter.user.id != interaction.user.id){
+                interaction.channel.send("이건 호스트만 할 수 있어!")
+            }
             if (inter.customId == '옵션1'){
                 const win_standard = Math.round(Math.random() * 100)
                 if (win_standard <= 45 + Math.random() * 5){
-                    win(2)
+                    win(2, inter)
                 }else{
-                    die()
+                    die(inter)
                 }
             }else if (inter.customId == '옵션2'){
                 const win_standard = Math.round(Math.random() * 100)
                 if (win_standard <= 23 + Math.random() * 2){
-                    win(4)
+                    win(4, inter)
                 }else{
-                    die()
+                    die(inter)
                 }
             }else if (inter.customId == '옵션3'){
                 const win_standard = Math.round(Math.random() * 100)
                 if (win_standard <= 9 + Math.random() * 1){
-                    win(10)
+                    win(10, inter)
                 }else{
-                    die()
+                    die(inter)
                 }
             }
+            collector.stop();
         }catch (error){
             console.log(error);
             interaction.editReply({
@@ -104,23 +107,25 @@ module.exports = {
 
         collector.on('end', collected => {
             console.log(`센세의 도박 시간 ${collected.size} 이 끝났어`);
+            wait(1000)
+            msg.delete()
         });
 
-        async function win(multiply){
+        async function win(multiply, inter){
             await gambling_Schema.updateOne(
                 {userid:interaction.user.id},
-                {money:Number(gambling_find.money) * multiply}
+                {money:Number(gambling_find.money) + bettingGold * multiply}
             )
 
             const embed = new EmbedBuilder()
             .setTitle(`승리!`)
             .setColor("Green")
-            .setDescription(`**와..! 대단해! 이겼어!\n+${(Number(gambling_find.money) * multiply).toLocaleString()}**`)
+            .setDescription(`**와..! 대단해! 이겼어!\n+${(bettingGold * multiply).toLocaleString()}**`)
 
-            interaction.editReply({embeds:[embed]})
+            inter.reply({embeds:[embed]})
         }
 
-        async function die(){
+        async function die(inter){
             await gambling_Schema.updateOne(
                 {userid:interaction.user.id},
                 {money:Number(gambling_find.money) - bettingGold}
@@ -131,7 +136,7 @@ module.exports = {
             .setColor("Red")
             .setDescription(`**에.. 졌어,,\n-${bettingGold.toLocaleString()}**`)
 
-            interaction.editReply({embeds:[embed]})
+            inter.reply({embeds:[embed]})
         }
     }
 }
