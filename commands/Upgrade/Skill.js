@@ -91,7 +91,7 @@ module.exports = {
         const canGiveTime = Number(gambling_find.cooltime) + 1 * 30 * 1000;
         if (canGiveTime && canGiveTime > Date.now()) {
           interaction.reply({
-            content: `**센세, 스킬 강화/생성 후에는 쿨타임이 있어.\n<t:${Math.round(
+            content: `**스킬 강화/생성 후에는 쿨타임이 있습니다.\n<t:${Math.round(
               canGiveTime / 1000,
             )}> (<t:${Math.round(canGiveTime / 1000)}:R>)**`,
           });
@@ -115,7 +115,7 @@ module.exports = {
 
       if (isitem == -1) {
         const embed = new EmbedBuilder()
-          .setDescription(`**센세에게 없는 스킬을 강화하라구..? 이부키는 그런거 못하는데..**`)
+          .setDescription(`**당신에게 없는 스킬을 강화하라구요? 참나**`)
           .setColor("Red");
 
         interaction.reply({ embeds: [embed] });
@@ -223,7 +223,7 @@ module.exports = {
               }%`,
             )
             .setDescription(
-              `**센세의 방어권으로 스킬이 보존됬어! \n남은 방어권: ${
+              `**당신의 방어권으로 스킬이 보존되었습니다. \n남은 방어권: ${
                 gambling_find?.defense - 1
               }개**`,
             )
@@ -248,7 +248,7 @@ module.exports = {
         const canGiveTime = Number(gambling_find.cooltime) + 1 * 30 * 1000;
         if (canGiveTime && canGiveTime > Date.now()) {
           interaction.reply({
-            content: `**스킬 강화/생성 후에는 쿨타임이 있어.\n<t:${Math.round(
+            content: `**스킬 강화/생성 후에는 쿨타임이 있습니다.\n<t:${Math.round(
               canGiveTime / 1000,
             )}> (<t:${Math.round(canGiveTime / 1000)}:R>)**`,
           });
@@ -268,7 +268,7 @@ module.exports = {
         if (isitem != -1) {
           const embed = new EmbedBuilder()
             .setDescription(
-              `**이미 센세에게 있는 스킬을 또 생성할 수 없어.**`,
+              `**이미 당신에게 있는 스킬을 또 생성할 수 없습니다.**`,
             )
             .setColor("Red");
 
@@ -278,7 +278,7 @@ module.exports = {
 
         if (length > 5) {
           const embed = new EmbedBuilder()
-            .setDescription(`**5개 이상의 스킬을 생성할 수 없어.**`)
+            .setDescription(`**5개 이상의 스킬을 생성할 수 없습니다.**`)
             .setColor("Red");
 
           interaction.reply({ embeds: [embed] });
@@ -288,7 +288,7 @@ module.exports = {
 
       if (!money_find || money_find.money < 25000) {
         const embed = new EmbedBuilder()
-          .setDescription(`**스킬을 생성하려면 돈 25,000¥이 필요해.**`)
+          .setDescription(`**스킬을 생성하려면 돈 25000재화가 필요합니다.**`)
           .setColor("Red");
 
         interaction.reply({ embeds: [embed] });
@@ -315,7 +315,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setDescription(
-          `**25,000¥을 주고 ${args}스킬을 생성했어! 강화 수: 0**`,
+          `**25000재화를 주고 스킬이 생성 되었습니다. 이름: ${args}, 강화 수: 0**`,
         )
         .setColor("Green");
 
@@ -330,7 +330,7 @@ module.exports = {
 
       if (!gambling_find) {
         interaction.reply({
-          content: `**스킬이 없네.. \`/스킬\` 명령어로 스킬을 생성해봐!**`,
+          content: `**스킬이 없으시군요.. \`/스킬\` 명령어로 스킬을 생성하세요.**`,
         });
         return;
       }
@@ -353,7 +353,7 @@ module.exports = {
       if (isitem == -1) {
         const embed = new EmbedBuilder()
           .setDescription(
-            `**스킬을 찾을 수 없어.. 공기라도 없애야 할까..?**`,
+            `**스킬을 찾을 수 없습니다.. 공기라도 없애라는 건가요?**`,
           )
           .setColor("Red");
 
@@ -390,7 +390,7 @@ module.exports = {
       //gambling_Schema.findOneAndRemove({name : gambling_find.skills[isitem]})
 
       const embed = new EmbedBuilder()
-        .setDescription(`**스킬이 성공적으로 삭제 되었어..! 이름: ${args}**`)
+        .setDescription(`**스킬이 성공적으로 삭제 되었습니다. 이름: ${args}**`)
         .setColor("Green");
 
       interaction.reply({ embeds: [embed] });
@@ -401,13 +401,13 @@ module.exports = {
 
       if (!gambling_find.skills) {
         interaction.reply({
-          content: `**스킬이 없네.. \`/스킬\` 명령어로 스킬을 생성해봐.**`,
+          content: `**스킬이 없으시군요.. \`/스킬\` 명령어로 스킬을 생성하세요.**`,
         });
         return;
       }
 
       const embed = new EmbedBuilder()
-        .setDescription(`**${interaction.user}센세의 스킬**`)
+        .setDescription(`**${interaction.user}님의 스킬**`)
         .setColor("Green");
 
       let length = gambling_find.skills.length;
@@ -442,7 +442,7 @@ module.exports = {
 
       if (!gambling_find.skills) {
         interaction.reply({
-          content: `**스킬이 없네.. \`/스킬\` 명령어로 스킬을 생성해봐!**`,
+          content: `**스킬이 없으시군요.. \`/스킬\` 명령어로 스킬을 생성하세요.**`,
         });
         return;
       }
@@ -466,7 +466,7 @@ module.exports = {
       if (isitem == -1) {
         const embed = new EmbedBuilder()
           .setDescription(
-            `**스킬을 찾을 수 없어.. 공기라도 바꿔야 하는 걸까..?**`,
+            `**스킬을 찾을 수 없습니다.. 공기라도 바꾸라는 건가요?**`,
           )
           .setColor("Red");
 
@@ -491,7 +491,7 @@ module.exports = {
       );
 
       const embed = new EmbedBuilder()
-        .setDescription(`**스킬이 성공적으로 변경 되었어. ${args2}로!**`)
+        .setDescription(`**스킬이 성공적으로 변경 되었습니다. ${args2}로요.**`)
         .setColor("Green");
 
       interaction.reply({ embeds: [embed] });
