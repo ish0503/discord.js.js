@@ -24,15 +24,66 @@ module.exports = {
 
         if (!gambling_find){
             interaction.reply({
-                content: `**돈이 없으시군요.. 돈을 어떻게든 얻어보세요.**`
+                content: `**센세.. 돈 데이터 없으면 못해, 알고 있지?＞﹏＜**`
             })
             return
         }
 
         if(gambling_find.money < bettingGold){
-            interaction.reply({content:`**잔액이 부족해요**`})
+            interaction.reply({content:`**돈이 업쪄..**`})
             return
         }
+
+        interaction.reply("이부키가 센세를 위한 옵션을 찾고 있어..")
+
+        const confirm = new ButtonBuilder()
+        .setCustomId(`옵션1`)
+        .setLabel(`확률 45~50%, 보상 2배!`)
+        .setStyle(ButtonStyle.Success)
+        .setEmoji('1113784802127126548');
+
+        const confirm2 = new ButtonBuilder()
+        .setCustomId(`옵션2`)
+        .setLabel(`확률 23~25%, 보상 4배!!`)
+        .setStyle(ButtonStyle.Primary)
+        .setEmoji('1204059769380282368');
+
+        const confirm3 = new ButtonBuilder()
+        .setCustomId(`옵션3`)
+        .setLabel(`확률 9~10%, 보상 10배!!!`)
+        .setStyle(ButtonStyle.Danger)
+        .setEmoji('1182871316181827634');
+    
+        const row = new ActionRowBuilder()
+            .addComponents(confirm, confirm2, confirm3);
+    
+        const msg = await interaction.editReply({
+            content: `큰 판 해볼랭?`,
+            components: [row],
+        });
+
+        const collector = msg.createMessageComponentCollector({
+            time: 30_000,
+            max: 1
+        })
+    
+        collector.on("collect", async (inter) => {
+        console.log(inter.user)
+        console.log(inter)
+        console.log(inter.customId)
+        try{
+            
+        }catch (error){
+            console.log(error);
+            interaction.editReply({
+                content: "error: "+error
+            })
+        }
+        })
+
+        collector.on('end', collected => {
+            console.log(`센세의 도박 시간 ${collected.size} 이 끝났어`);
+        });
 
         const win_standard = Math.round(Math.random() * 100)
         const random_number = Math.round(Math.random() * 100)
@@ -45,11 +96,11 @@ module.exports = {
             )
 
             const embed = new EmbedBuilder()
-            .setTitle(`승리하였습니다!`)
+            .setTitle(`승리!`)
             .setColor("Green")
-            .setDescription(`**이길 확률 ${win_standard}% 에서 승리하셨습니다!\n+${bettingGold.toLocaleString()}**`)
+            .setDescription(`**와..! 대단해! ${win_standard}% 확률에서 이겼어!\n+${bettingGold.toLocaleString()}**`)
 
-            interaction.reply({embeds:[embed]})
+            interaction.editReply({embeds:[embed]})
         } else {
             //짐
             await gambling_Schema.updateOne(
@@ -58,11 +109,11 @@ module.exports = {
             )
 
             const embed = new EmbedBuilder()
-            .setTitle(`패배하셨습니다..`)
+            .setTitle(`패배..`)
             .setColor("Red")
-            .setDescription(`**이길 확률 ${win_standard}% 에서 패배하셨습니다..\n-${bettingGold.toLocaleString()}**`)
+            .setDescription(`**에.. ${win_standard}% 확률에서 졌어,,\n-${bettingGold.toLocaleString()}**`)
 
-            interaction.reply({embeds:[embed]})
+            interaction.editReply({embeds:[embed]})
         }
         
     }
