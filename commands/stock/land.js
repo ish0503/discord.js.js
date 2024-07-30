@@ -42,7 +42,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
         subcommand
         .setName("징집")
-        .setDescription("군대를 징집할 땅을 구매하세요. (군사 1당 필요 돈: 10000엔)")
+        .setDescription("군대를 징집할 땅을 구매하세요. (군사 1당 필요 돈: 10000원)")
         .addIntegerOption((options) =>
           options
             .setName("번호")
@@ -78,8 +78,6 @@ module.exports = {
                 userid:interaction.user.id
             })
 
-            const lands_finds = await lands_Schema.find()
-            
             interaction.reply("# **현재 땅**")
 
             const canvas = Canvas.createCanvas(300, 300)
@@ -90,7 +88,10 @@ module.exports = {
             // context.fillRect(0, 0, canvas.width, canvas.height);
             for (let i2 = 1; i2 < 11; i2++) {
                 for (let i = 1; i < 11; i++) {
-                    const lands_find = lands_finds[(i2 - 1) * 10 + i - 1]
+                    const lands_find = await lands_Schema.findOne({
+                        landsid:(i2 - 1) * 10 + i
+                    })
+
                     const playerland = (Player_lands_find?.lands || [])
                     const playerally = (Player_lands_find?.ally || [])
                     const playerenemy = (Player_lands_find?.enemy || [])
@@ -234,23 +235,18 @@ module.exports = {
                 buildingsStr = buildingsStr + element + " "
             });
 
-            var army = Math.round(lands_find.army * (Math.random() * 10 / Player_lands_find.reconnaissance))
-            if (playerland.filter((land) => land == args).length != 0){
-                army = lands_find.army
-            }
-
             const embed = new EmbedBuilder()
               .setDescription(args + "땅의 상세정보")
               .addFields(
                 { name: "땅 주인", value: `**${!user ? "없음" : user.username}**` },
                 { name: "땅 값", value: `**${lands_find.price.toLocaleString()}**` },
-                { name: "예상되는 주둔 군대", value: `**${army.toLocaleString()}**` },
+                { name: "예상되는 주둔 군대", value: `**${Math.round(lands_find.army * (Math.random() * 10 / Player_lands_find.reconnaissance)).toLocaleString()}**` },
                 { name: "땅 레벨", value: `**${lands_find.level.toLocaleString()}**` },
                 { name: "지어진 건물", value: `**${buildingsStr}**` },
               )
               .setColor(color);
 
-              interaction.reply({embeds : [embed], ephemeral: true})
+              interaction.reply({embeds : [embed]})
         }else if(interaction.options.getSubcommand() === "구매"){
             const args = interaction.options.getInteger("번호");
             const lands_find = await lands_Schema.findOne({

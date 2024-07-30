@@ -5,19 +5,17 @@ const {
   const gambling_Schema = require("../../models/Money")
   const gambling_Schema2 = require("../../models/upgrade")
   const level_Sechma = require("../../models/level")
-  const comma = require("comma-number");
-const { table } = require("node:console");
   const wait = require('node:timers/promises').setTimeout;
 
   var cooldown = []
   
   module.exports = {
     data: new SlashCommandBuilder()
-      .setName("피빕")
+      .setName("대련")
       .setDescription("PVP.")
       .addUserOption(options => options
         .setName("유저")
-        .setDescription("선전포고할 유저를 선택하세요.")
+        .setDescription("돈을 걸고 대련할 유저를 선택하세요.")
         .setRequired(true)
     ),
     /**
@@ -54,21 +52,21 @@ const { table } = require("node:console");
 
         if (!gambling_find || !gambling_find3){
             interaction.editReply({
-                content: `**당신이나 ${args.user.username}의 돈 데이터가 없습니다.. 얻을게 없는데 PVP를 왜 하죠?**`
+                content: `**당신이나 ${args.user.username}의 돈 데이터가 없어..**`
             })
             return
         }
 
         if (!level_find || !level_find3){
             interaction.editReply({
-                content: `**당신이나 ${args.user.username}의 레벨 데이터가 없습니다.. 얻을게 없는데 PVP를 왜 하죠?**`
+                content: `**당신이나 ${args.user.username}의 레벨 데이터가 없어..`
             })
             return
         }
 
         if (cooldown.find((element) => element == interaction.user.id)){
             interaction.editReply({
-                content: `**현재 이미 명령어를 실행하고 있습니다.**`
+                content: `**한 사람당 하나의 PVP가 룰이야!**`
             })
             return
         }
@@ -187,13 +185,13 @@ const { table } = require("node:console");
 
           if (save2.length <= 0){
             interaction.editReply({
-                content: `**아이템도 없는 사람을 팰려고 하다니 역시 당신은..**`
+                content: `**어,, 상대의 아이템이 없어서 안될거 같아!**`
             })
             return
             clear()
         }else if(save.length <= 0){
             interaction.editReply({
-                content: `**당신 아이템부터 만들고 오세용..(/아이템 생성)**`
+                content: `**맨손으로 싸우지 말고 아이템 만들어!..(/아이템 생성)**`
             })
             return
             clear()
@@ -219,8 +217,8 @@ const { table } = require("node:console");
             damage2 = save2[0].value + skills2[0].Lv
         }
           
-        const monster = { name: save2[0].name, hp: save2[0].value * 20, reward: Math.round(gambling_find3.money / 10000), XPreward:Math.round(level_find3.level / 10000) };
-        const user = { name: save[0].name, hp: save[0].value * 20, reward: Math.round(gambling_find.money / 10000), XPreward:Math.round(level_find.level / 10000) };
+        const monster = { name: save2[0].name, hp: save2[0].value * 10, reward: Math.round(gambling_find3.money / Math.random() * 1000), XPreward:Math.round(level_find3.level / 1000) };
+        const user = { name: save[0].name, hp: save[0].value * 10, reward: Math.round(gambling_find.money / 1000), XPreward:Math.round(level_find.level / 1000) };
         if (save.length <= 0){
             interaction.editReply(`당신은 ${monster.name}을(를) 가지고 있는 ${args.user.username}에게 선전포고를 했다! 거절은 없다! \n(당신의 무기: 맨주먹)`);
         }else{
@@ -396,7 +394,7 @@ const { table } = require("node:console");
             const embed = new EmbedBuilder()
                 .setTitle("PVP 성공")
                 .setDescription(
-                    `${interaction.user.username}님이 ${args.user.username}의 ${monster.name}을(를) 쓰러뜨려서 돈과 레벨을 강탈했습니다.\n${monster.reward.toLocaleString()}돈, ${monster.XPreward.toLocaleString()}레벨 을 얻었습니다.`
+                    `${interaction.user.username}센세가 ${args.user.username}센세의 ${monster.name}을(를) 쓰러뜨려서 돈과 레벨을 강탈했어.\n${monster.reward.toLocaleString()}¥, ${monster.XPreward.toLocaleString()}레벨을 얻었어!`
                 )
                 .setColor("Green");
             
@@ -439,7 +437,7 @@ const { table } = require("node:console");
             const embed = new EmbedBuilder()
                 .setTitle("PVP 실패")
                 .setDescription(
-                    `${interaction.user.username}님이 ${args.user.username}의 ${monster.name}에게 졌습니다.. ${user.reward.toLocaleString()}돈, ${user.XPreward.toLocaleString()}레벨을 잃었습니다...`
+                    `${interaction.user.username}센세가 ${args.user.username}센세의 ${monster.name}에게 졌어. ${user.reward.toLocaleString()}¥, ${user.XPreward.toLocaleString()}레벨을 잃었어!`
                 )
                 .setColor("DarkRed");
             

@@ -3,7 +3,7 @@ const fs = require('fs')
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("도움")
+    .setName("명령어")
     .setDescription("명령어들을 봅니다."),
 
     /**

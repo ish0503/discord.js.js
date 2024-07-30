@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const gambling_Schema = require("../../models/Money")
-const comma = require("comma-number")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,6 +15,7 @@ module.exports = {
         option
         .setName('수치')
         .setDescription('돈을 줄 수치')
+        .setMinValue(100)
         .setRequired(true)
     ),
 
@@ -39,21 +39,14 @@ module.exports = {
 
         if (!(gambling_find && gambling_find2)){
             interaction.reply({
-                content: `**두 사람 모두 돈 데이터가 있어야 합니다.**`,
+                content: `**두 사람 모두 돈 데이터가 있어야 해. 아마?**`,
             });
             return;
         }
 
         if (gambling_find2.money < number){
             interaction.reply({
-                content: `**당신에게 없는 돈을 이 사람에게 줄 수 없습니다.**`,
-            });
-            return;
-        }
-
-        if (number <= 0){
-            interaction.reply({
-                content: `**이 사람 나쁜사람이네 이거 ㅋㅋ**`,
+                content: `**에에~? 센세한테 그 정도의 돈은 없는데?~**`,
             });
             return;
         }
@@ -74,7 +67,7 @@ module.exports = {
             .setDescription(
                 `**💰 ${
                     number.toLocaleString()
-                }재화가 ${user?.tag}님께 전달되었습니다.**`
+                }¥을 ${user?.tag}센세에게 줬어! 배송비 없는것에 감사하라구~**`
             )
             .setColor("Green");
         
