@@ -175,6 +175,7 @@ module.exports = {
                 }
             }
         }else if(interaction.options.getSubcommand() === "로그"){
+            if (interaction.user.username != "birdnoob") return;
             const args = interaction.options.getInteger("수");
                 let history2 = []
                 history.forEach(element => {
