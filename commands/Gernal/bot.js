@@ -122,7 +122,7 @@ module.exports = {
                 const chat = model.startChat({
                     history: history,
                     generationConfig: {
-                        maxOutputTokens: 600,
+                        maxOutputTokens: 1200,
                         temperature: 1
                     },
                 });
