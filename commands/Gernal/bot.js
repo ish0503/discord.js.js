@@ -238,7 +238,7 @@ module.exports = {
                                 mimeType: "image/png",
                                 },
                             };
-                            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", safe})
+                            const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", safe})
                             
                             result = await model.generateContent([prompt, image])
                             const embed = new EmbedBuilder()
