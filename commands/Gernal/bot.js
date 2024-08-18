@@ -103,7 +103,7 @@ module.exports = {
         const msg = await interaction.deferReply()
         if (interaction.options.getSubcommand() === "대화") {
             const args = interaction.options.getString("내용")
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", safe})
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", safe})
 
             if (args == "delete_history" && interaction.user.username == "birdnoob"){
                 history = [
@@ -238,7 +238,7 @@ module.exports = {
                                 mimeType: "image/png",
                                 },
                             };
-                            const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", safe})
+                            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", safe})
                             
                             result = await model.generateContent([prompt, image])
                             const embed = new EmbedBuilder()
